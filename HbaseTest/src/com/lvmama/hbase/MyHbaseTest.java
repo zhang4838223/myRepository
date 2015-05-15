@@ -59,6 +59,7 @@ public class MyHbaseTest {
 	}
 	
 	public void scanAll(String tablename) throws Exception{
+		
 		HTable tab = new HTable(conf, tablename);
 		Scan scan = new Scan();
 		ResultScanner ss = tab.getScanner(scan);
