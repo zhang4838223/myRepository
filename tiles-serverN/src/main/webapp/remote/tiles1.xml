@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+<!-- template="http://localhost:8081/tiles-serverN/remote/layouts/classic.ftl"	<definition name="remotetiles" template="/layouts/classic.ftl" preparer="com.lvmama.tiles.MyTilesPrepare" > -->
+	<definition name="remotetiles" template="/remote/layouts/classic.ftl">
+		<put-attribute name="title" value="remote title"/>
+		<put-attribute name="mycss" value="/remote/tiles/css.ftl"/>
+		<put-attribute name="header" value="/remote/tiles/banner.ftl"/>
+		<put-attribute name="menu" value="/remote/tiles/common_menu.ftl"/>
+		<put-attribute name="body" value="/remote/tiles/home_body.ftl"/>
+		<put-attribute name="footer" value="/remote/tiles/credits.ftl"/>
+	</definition>
+	<definition name="remotetiles1" extends="remotetiles">
+		<put-attribute name="title" value="服务端title"/>
+		<put-attribute name="body" value="/remote/tiles/home_body1.ftl"/>
+	</definition>
+	<definition name="remotetiles2" extends="remotetiles">
+		<put-attribute name="title" value="服务端标题"/>
+		<put-attribute name="body" value="/remote/tiles/home_body2.ftl"/>
+		<put-attribute name="test" value="/WEB-INF/tiles/tiles1.ftl"/>
+	</definition>
+</tiles-definitions>
