@@ -56,8 +56,8 @@ public class LogAnalysis {
     conf.set("df.default.name","hdfs://master:9000/");
     conf.set("hadoop.job.ugi","hadoop,hadoop");
     conf.set("mapred.job.tracker","master:9001");
-    conf.set("mapred.jar", "/my.jar");
-    args = new String[] {"hdfs://master:9000/user/hadoop/input/ticket.log","hdfs://master:9000/user/hadoop/outlog5"};
+    conf.set("mapred.jar", "D:/my.jar");
+    args = new String[] {"hdfs://master:9000/user/hadoop/input/ticket.log","hdfs://master:9000/user/hadoop/outlog2"};
     String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
     if (otherArgs.length != 2) {
       System.err.println("Usage: wordcount <in> <out>");
