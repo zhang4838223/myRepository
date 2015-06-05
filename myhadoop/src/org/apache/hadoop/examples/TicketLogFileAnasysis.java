@@ -89,8 +89,8 @@ public static class LogFileReducer
 		 job.setMapperClass(LogFileMapper.class);
 		 job.setCombinerClass(LogFileReducer.class);
 		 job.setReducerClass(LogFileReducer.class);
-		 job.setOutputKeyClass(Text.class);
-		 job.setOutputValueClass(LongWritable.class);
+		 job.setOutputKeyClass(Text.class);                //mapper的输出键类型
+		 job.setOutputValueClass(LongWritable.class);      //mapper的输出值类型
 		 FileInputFormat.addInputPath(job, new Path(otherArgs[0]));
 		 FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
 		 System.exit(job.waitForCompletion(true) ? 0 : 1);
