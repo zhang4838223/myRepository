@@ -32,47 +32,7 @@ public class MyHbaseTest {
 		// TODO Auto-generated method stub
 		try {
 			HBaseJavaApi api = new HBaseJavaApi();
-			String tableName = "student";
-			String[] columnFamilies = new String[]{"info","course"};
-			api.createTable(tableName, columnFamilies);
-			
-			//向表中添加第一行数据
-			api.addRecord(tableName, "xiaoming", "info", "age", "20");
-			api.addRecord(tableName, "xiaoming", "info", "gender", "male");
-			api.addRecord(tableName, "xiaoming", "course", "math", "120");
-			api.addRecord(tableName, "xiaoming", "course", "english", "128");
-			api.addRecord(tableName, "xiaoming", "course", "chinese", "130");
-			
-			//向表中添加第二行数据
-			api.addRecord(tableName, "tiger", "info", "age", "18");
-			api.addRecord(tableName, "tiger", "info", "gender", "female");
-			api.addRecord(tableName, "tiger", "course", "math", "110");
-			api.addRecord(tableName, "tiger", "course", "english", "118");
-			api.addRecord(tableName, "tiger", "course", "chinese", "135");
-			
-			//向表中添加第三行数据
-			api.addRecord(tableName, "lion", "info", "age", "22");
-			api.addRecord(tableName, "lion", "info", "gender", "male");
-			api.addRecord(tableName, "lion", "course", "math", "130");
-			api.addRecord(tableName, "lion", "course", "english", "108");
-			api.addRecord(tableName, "lion", "course", "chinese", "145");
-			
-			//获取一条数据
-			System.out.println("获取一条lion的数据：");
-			api.getRowRecord(tableName, "lion");
-			
-			//获取所有数据
-			System.out.println("获取所有数据：");
-			api.getAllRecords(tableName);
-			
-			//删除一条的数据
-			System.out.println("删除xiaoming的一条数据：");
-			api.deleteRecord(tableName, "xiaoming");
-			
-			
-			//删除多条数据
-			System.out.println("删除多条数据：");
-			api.deleteMultiRecords(tableName, new String[]{"lion","tiger"});
+			api.deleteTable("worldcount");
 
 		}  catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -81,6 +41,50 @@ public class MyHbaseTest {
 		
 	}
 	
+	public static void test1() throws Exception{
+		HBaseJavaApi api = new HBaseJavaApi();
+		String tableName = "student";
+		String[] columnFamilies = new String[]{"info","course"};
+		api.createTable(tableName, columnFamilies);
+		
+		//向表中添加第一行数据
+		api.addRecord(tableName, "xiaoming", "info", "age", "20");
+		api.addRecord(tableName, "xiaoming", "info", "gender", "male");
+		api.addRecord(tableName, "xiaoming", "course", "math", "120");
+		api.addRecord(tableName, "xiaoming", "course", "english", "128");
+		api.addRecord(tableName, "xiaoming", "course", "chinese", "130");
+		
+		//向表中添加第二行数据
+		api.addRecord(tableName, "tiger", "info", "age", "18");
+		api.addRecord(tableName, "tiger", "info", "gender", "female");
+		api.addRecord(tableName, "tiger", "course", "math", "110");
+		api.addRecord(tableName, "tiger", "course", "english", "118");
+		api.addRecord(tableName, "tiger", "course", "chinese", "135");
+		
+		//向表中添加第三行数据
+		api.addRecord(tableName, "lion", "info", "age", "22");
+		api.addRecord(tableName, "lion", "info", "gender", "male");
+		api.addRecord(tableName, "lion", "course", "math", "130");
+		api.addRecord(tableName, "lion", "course", "english", "108");
+		api.addRecord(tableName, "lion", "course", "chinese", "145");
+		
+		//获取一条数据
+		System.out.println("获取一条lion的数据：");
+		api.getRowRecord(tableName, "lion");
+		
+		//获取所有数据
+		System.out.println("获取所有数据：");
+		api.getAllRecords(tableName);
+		
+		//删除一条的数据
+		System.out.println("删除xiaoming的一条数据：");
+		api.deleteRecord(tableName, "xiaoming");
+		
+		
+		//删除多条数据
+		System.out.println("删除多条数据：");
+		api.deleteMultiRecords(tableName, new String[]{"lion","tiger"});
+	}
 	public void queryData(String tablename,String row,String col, String qualifier) throws Exception{
 		HTable tab = new HTable(conf, tablename);
 		Get get = new Get(row.getBytes());

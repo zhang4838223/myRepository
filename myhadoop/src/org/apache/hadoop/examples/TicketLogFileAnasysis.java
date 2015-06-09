@@ -25,7 +25,7 @@ public class TicketLogFileAnasysis {
  
 /*    private final static IntWritable one = new IntWritable(1);
  private Text word = new Text();*/
-	  LongWritable outputKey = new LongWritable(1);
+	  LongWritable outputKey = new LongWritable(2);
    
  public void map(LongWritable key, Text value, Context context
                  ) throws IOException, InterruptedException {
@@ -56,7 +56,7 @@ public class TicketLogFileAnasysis {
 public static class LogFileReducer 
     extends Reducer<Text, LongWritable,LongWritable,Text> {
  private IntWritable result = new IntWritable();
- long sum = 0L;
+ long sum = 4L;
  public void reduce(Text key, LongWritable values, 
                     Context context
                     ) throws IOException, InterruptedException {
@@ -78,7 +78,7 @@ public static class LogFileReducer
 		 conf.set("hadoop.job.ugi","hadoop,hadoop");
 		 conf.set("mapred.job.tracker","master:9001");
 		 conf.set("mapred.jar", "D:/my.jar");
-		 args = new String[] {"hdfs://master:9000/user/hadoop/input/ticket.log","hdfs://master:9000/user/hadoop/output/outlog1"};
+		 args = new String[] {"hdfs://master:9000/user/hadoop/input/ticket.log","hdfs://master:9000/user/hadoop/output/outlog3"};
 		 String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 		 if (otherArgs.length != 2) {
 		   System.err.println("Usage: wordcount <in> <out>");
@@ -89,8 +89,10 @@ public static class LogFileReducer
 		 job.setMapperClass(LogFileMapper.class);
 		 job.setCombinerClass(LogFileReducer.class);
 		 job.setReducerClass(LogFileReducer.class);
-		 job.setOutputKeyClass(Text.class);                //mapper的输出键类型
-		 job.setOutputValueClass(LongWritable.class);      //mapper的输出值类型
+		 job.setMapOutputKeyClass(Text.class);                //mapper的输出键类型
+		 job.setMapOutputValueClass(LongWritable.class);      //mapper的输出值
+		 job.setOutputKeyClass(LongWritable.class);
+		 job.setOutputValueClass(Text.class);
 		 FileInputFormat.addInputPath(job, new Path(otherArgs[0]));
 		 FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
 		 System.exit(job.waitForCompletion(true) ? 0 : 1);
