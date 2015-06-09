@@ -67,11 +67,7 @@ public class WorldCountHbase {
 	 */
 	public static void main(String[] args) {
 
-		HBaseJavaApi api = new HBaseJavaApi();
-		
 		try {
-			api.createTable("worldcount", new String[]{"content"});
-			
 			Configuration conf = new Configuration();
 			conf.set("mapred.job.tracker","master:9001");
 			conf.set("hbase.zookeeper.quorum", "slave1,slave2,slave3");
