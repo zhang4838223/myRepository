@@ -7,7 +7,7 @@ import MyDemo._MyPrinterDisp;
  * @author xiaojun.zhang
  *
  */
-public class MyPrinterI extends _MyPrinterDisp {
+public class MyPrinterI extends MyDemo._MyPrinterDisp {
 
 	@Override
 	public void printString(String s, Current __current) {
