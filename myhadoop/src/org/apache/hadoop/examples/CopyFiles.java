@@ -32,7 +32,6 @@ public class CopyFiles {
 				System.out.println(status[i].getPath());
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
