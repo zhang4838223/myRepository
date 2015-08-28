@@ -18,7 +18,50 @@ class HelloWorld {
 
 //        stringTest()
 //        listTest()
-        listTest1()
+//        listTest1()
+//        testDemo1()
+
+//        mapTest()
+        closureTest()
+
+
+
+    }
+
+    private static closureTest(){
+
+        def say = {word->
+            println("Hi,${word}")
+        }
+
+        say("world")
+    }
+
+    private static mapTest(){
+
+        def map = ["name":"lisi","age":3,"sex":"boy"]
+        map.father = "jhon"
+        map+=["mother":"alice"]
+
+        println(map)
+        println map.getClass()
+
+        map.each {
+            if (it.key.equals("name")){//这里it代表集合中的每个元素
+                println(it)
+            }
+        }
+
+    }
+
+    private static testDemo1(){
+
+        def var = "hello world!"
+
+        for (i in 0..5){
+            println("${i},${var}")
+        }
+
     }
 
     private static listTest(){
@@ -44,6 +87,12 @@ class HelloWorld {
         println(coll)
 
         println(coll*.toLowerCase())          //coll* 遍历处理coll中的元素
+
+        coll.each {
+            if(it.endsWith("A")){
+                println(it)
+            }
+        }
 
     }
 
