@@ -2,10 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title></title>
+    <title>服务器列表</title>
 </head>
 <body>
-    <table>
+    <table >
         <thead>
             <tr>
                 <th>show_id</th>
