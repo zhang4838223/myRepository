@@ -27,7 +27,7 @@ public class MyJfinalController extends Controller {
     }
 
     @Before(CacheInterceptor.class)
-    @CacheName("serverList")//缓存数据
+    @CacheName("serverList")//缓存数据，其中serverList需要配置在ehcache.xml中
     public void findAll(){
         List<GameServer> serverList = GameServer.DAO.find("select * from game_server");
         setAttr("servers",serverList);
@@ -35,21 +35,15 @@ public class MyJfinalController extends Controller {
     }
 
     @Before(EvictInterceptor.class)
-    @CacheName("serverList")//会更新该缓存数据
+    @CacheName("serverList")//会更新该缓存serverList中的数据
     public void save(){
         GameServer server = getModel(GameServer.class,"server");
         server.save();
         redirect("/hello/findAll");
     }
 
-    private void queryAll() {
-        List<GameServer> serverList = GameServer.DAO.find("select * from game_server");
-        setAttr("servers", serverList);
-        redirect("/hello/findAll");
-    }
-
     @Before(EvictInterceptor.class)
-    @CacheName("serverList")//会更新该缓存数据
+    @CacheName("serverList")//会更新该缓存serverList数据
     public void delete(){
         int id = getParaToInt("show_id");
         GameServer.DAO.deleteById(id);
