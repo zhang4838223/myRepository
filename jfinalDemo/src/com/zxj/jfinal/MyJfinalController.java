@@ -13,18 +13,36 @@ public class MyJfinalController extends Controller {
     public void index(){
         renderText("hello jfinal!!");
         //保存数据
-        new GameServer().set("show_id",2)
+        /*new GameServer().set("show_id",2)
                 .set("host","127.0.0.2")
                 .set("is_new",true)
                 .set("name","叶公好龙")
                 .set("cp_show_only",0)
                 .set("cp_enter_only",0)
-                .set("online_limit",1).save();
+                .set("online_limit",1).save();*/
     }
 
     public void findAll(){
         List<GameServer> serverList = GameServer.DAO.find("select * from game_server");
         setAttr("servers",serverList);
         renderJsp("/WEB-INF/servers.jsp");
+    }
+
+    public void save(){
+        GameServer server = getModel(GameServer.class,"server");
+        server.save();
+        queryAll();
+    }
+
+    private void queryAll() {
+        List<GameServer> serverList = GameServer.DAO.find("select * from game_server");
+        setAttr("servers", serverList);
+        renderJsp("/WEB-INF/servers.jsp");
+    }
+
+    public void delete(){
+        int id = getParaToInt("show_id");
+        GameServer.DAO.deleteById(id);
+        queryAll();
     }
 }
