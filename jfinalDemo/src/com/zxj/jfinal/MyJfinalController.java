@@ -1,6 +1,10 @@
 package com.zxj.jfinal;
 
+import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
+import com.jfinal.plugin.ehcache.CacheInterceptor;
+import com.jfinal.plugin.ehcache.CacheName;
+import com.jfinal.plugin.ehcache.EvictInterceptor;
 import com.zxj.jfinal.model.GameServer;
 
 import java.util.List;
@@ -22,27 +26,33 @@ public class MyJfinalController extends Controller {
                 .set("online_limit",1).save();*/
     }
 
+    @Before(CacheInterceptor.class)
+    @CacheName("serverList")//缓存数据
     public void findAll(){
         List<GameServer> serverList = GameServer.DAO.find("select * from game_server");
         setAttr("servers",serverList);
         renderJsp("/WEB-INF/servers.jsp");
     }
 
+    @Before(EvictInterceptor.class)
+    @CacheName("serverList")//会更新该缓存数据
     public void save(){
         GameServer server = getModel(GameServer.class,"server");
         server.save();
-        queryAll();
+        redirect("/hello/findAll");
     }
 
     private void queryAll() {
         List<GameServer> serverList = GameServer.DAO.find("select * from game_server");
         setAttr("servers", serverList);
-        renderJsp("/WEB-INF/servers.jsp");
+        redirect("/hello/findAll");
     }
 
+    @Before(EvictInterceptor.class)
+    @CacheName("serverList")//会更新该缓存数据
     public void delete(){
         int id = getParaToInt("show_id");
         GameServer.DAO.deleteById(id);
-        queryAll();
+        redirect("/hello/findAll");
     }
 }

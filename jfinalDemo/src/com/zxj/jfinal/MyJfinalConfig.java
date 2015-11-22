@@ -5,6 +5,7 @@ import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
+import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.zxj.jfinal.model.GameServer;
 
 /**
@@ -24,6 +25,9 @@ public class MyJfinalConfig extends JFinalConfig {
     @Override
     public void configPlugin(Plugins plugins) {
 
+        //==============ª∫¥Êehcach≤Âº˛e======================
+        plugins.add(new EhCachePlugin());
+        //db≈‰÷√
         Prop prop = PropKit.use("db.txt");
         String jdbcUrl = prop.get("jdbcUrl");//"jdbc:mysql://localhost:3306/xsg_center";
         String user = prop.get("user");//"root";
@@ -35,6 +39,7 @@ public class MyJfinalConfig extends JFinalConfig {
         plugins.add(arp);
         String tableName="game_server";
         arp.addMapping(tableName,GameServer.class);
+
     }
 
     @Override
