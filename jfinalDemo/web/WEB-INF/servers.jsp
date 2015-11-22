@@ -54,7 +54,7 @@
                 <input type="number" name="server.online_limit"/>
             </td>
             <td>
-                <input type="submit" value="保存报告" />
+                <input type="submit" value="保存" />
             </td>
         </tr>
     </table>
